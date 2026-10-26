@@ -22,6 +22,7 @@
   min-height: 600px;
   width: 100%;
   overflow: hidden;
+  background: #0d3f5a;
 }
 .home-hero video{
   position: absolute;
@@ -1003,8 +1004,8 @@
 
   <!-- ===== 1. HERO ===== -->
   <section class="home-hero" aria-label="Hero">
-    <video class="hero-video-desktop" src="assets/hero%20video/desktop%20HERO%20FOR%20HOME%20PGAE%201O%20SEC%20LOOP.mp4" autoplay loop muted playsinline></video>
-    <video class="hero-video-mobile" src="assets/hero%20video/MOBILE%20HERO%20FOR%20HOME%20PGAE%201O%20SEC%20LOOP.mp4" autoplay loop muted playsinline></video>
+    <video class="hero-video-desktop" data-hero-video="desktop" data-src="assets/hero%20video/desktop%20HERO%20FOR%20HOME%20PGAE%201O%20SEC%20LOOP.mp4" preload="none" autoplay loop muted playsinline></video>
+    <video class="hero-video-mobile" data-hero-video="mobile" data-src="assets/hero%20video/MOBILE%20HERO%20FOR%20HOME%20PGAE%201O%20SEC%20LOOP.mp4" preload="none" autoplay loop muted playsinline></video>
     <div class="home-hero-overlay"></div>
     <div class="home-hero-content">
       <h1 class="home-hero-title">Pause.<br>Reflect. Evolve.</h1>
@@ -1026,7 +1027,7 @@
     <div class="video-scroll-sticky" id="videoScrollSticky">
       <div class="video-scroll-frame" id="videoScrollFrame">
         <div class="video-thumb-container" id="videoThumbContainer">
-          <img src="assets/thumbnail%20for%20shot%20film%20soulscribe.png" alt="Every soul's story | A short film by Soulscribe" class="video-thumb-img">
+          <img src="assets/thumbnail%20for%20shot%20film%20soulscribe.png" alt="Every soul's story | A short film by Soulscribe" class="video-thumb-img" loading="lazy" decoding="async">
           <div class="video-yt-top">
             <img src="assets/logo%202.png" alt="Soulscribe" class="yt-avatar">
             <div class="yt-title-info">

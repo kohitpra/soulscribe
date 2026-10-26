@@ -14,6 +14,35 @@ function initDrawer() {
   overlay.addEventListener("click", close);
 }
 
+function initResponsiveHeroVideo() {
+  const videos = document.querySelectorAll("[data-hero-video]");
+  if (!videos.length) return;
+
+  const viewport = window.matchMedia("(max-width: 768px)");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const updateVideo = () => {
+    const activeVideo = reducedMotion.matches
+      ? null
+      : document.querySelector(`[data-hero-video="${viewport.matches ? "mobile" : "desktop"}"]`);
+
+    videos.forEach((video) => {
+      if (video === activeVideo) {
+        if (!video.hasAttribute("src")) {
+          video.src = video.dataset.src;
+        }
+      } else if (video.hasAttribute("src")) {
+        video.pause();
+        video.removeAttribute("src");
+        video.load();
+      }
+    });
+  };
+
+  updateVideo();
+  viewport.addEventListener("change", updateVideo);
+  reducedMotion.addEventListener("change", updateVideo);
+}
+
 // Reveal on scroll
 function initReveal() {
   const els = document.querySelectorAll(".reveal");
@@ -138,6 +167,7 @@ function initAccountButtons() {
 
 document.addEventListener("DOMContentLoaded", () => {
   initDrawer();
+  initResponsiveHeroVideo();
   initAccountButtons();
   initReveal();
   initHeroNames();
