@@ -6,15 +6,13 @@
   src: url("assets/Recoleta-RegularDEMO.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
-@font-face {
-  font-family: "Mifer Holland";
-  src: url("assets/Mifer-Holland.otf") format("opentype"),
-       url("assets/Mifer-Holland.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
+/* "Mifer Holland" has no font file in assets/, so its @font-face was dropped:
+   it only cost two 404s per page load. The brand wordmark still names it first
+   and falls through to --font-display (Recoleta), which is what already rendered.
+   Re-add the block here if the font file is ever shipped. */
 
 :root {
   --cream: #fffff9;

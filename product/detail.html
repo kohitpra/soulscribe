@@ -38,7 +38,7 @@
   <div class="soulscribe-header">
     <div class="left">
       <button class="icon-btn" data-open-menu aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
-      <a class="brand" href="../index.html"><img src="../assets/logo%202.png" alt="Soulscribe logo"><span style="font-family: 'Mifer Holland', var(--font-display);">Soulscribe</span></a>
+      <a class="brand" href="../index.html"><img src="../assets/logo%202.png" alt="Soulscribe logo" decoding="async"><span style="font-family: 'Mifer Holland', var(--font-display);">Soulscribe</span></a>
     </div>
     <div class="right">
       <a class="icon-btn" href="../login.html" aria-label="Account" title="Account"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
@@ -49,7 +49,7 @@
 <div class="overlay" data-overlay></div>
 <aside class="drawer" data-drawer>
   <div class="drawer-head">
-    <a class="brand" href="../index.html"><img src="../assets/logo%202.png" alt="Soulscribe logo"><span style="font-family: 'Mifer Holland', var(--font-display);">Soulscribe</span></a>
+    <a class="brand" href="../index.html"><img src="../assets/logo%202.png" alt="Soulscribe logo" decoding="async"><span style="font-family: 'Mifer Holland', var(--font-display);">Soulscribe</span></a>
     <button class="icon-btn" data-close-menu aria-label="Close menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
   </div>
   <nav>
@@ -419,15 +419,15 @@
         // PLANNERS ONLY: Exactly one photo on left as fix, NO AI images
         const mainImgUrl = productImages[0]?.url || product.featuredImage?.url;
         if (mainImgUrl) {
-          gallery.innerHTML = `<img src="${mainImgUrl}" alt="${product.title}" loading="eager">`;
+          gallery.innerHTML = `<img src="${mainImgUrl}" alt="${product.title}" loading="eager" decoding="async" fetchpriority="high">`;
         }
       } else {
         // JOURNALING KITS: Real images only (NO AI images)
         if (productImages.length === 0) {
-          gallery.innerHTML = `<img src="../assets/product_photos/THANKYOU%20KRISHNA%20JOURNALING%20KIT/mockup%20-%201st%20photo.png" alt="${product.title}">`;
+          gallery.innerHTML = `<img src="../assets/product_photos/THANKYOU%20KRISHNA%20JOURNALING%20KIT/mockup%20-%201st%20photo.png" alt="${product.title}" decoding="async" loading="lazy">`;
         } else {
           gallery.innerHTML = productImages.map((img, idx) => `
-            <img src="${img.url}" alt="${product.title} view ${idx + 1}" loading="${idx === 0 ? 'eager' : 'lazy'}">
+            <img src="${img.url}" alt="${product.title} view ${idx + 1}" loading="${idx === 0 ? 'eager' : 'lazy'}" decoding="async">
           `).join('');
         }
       }
@@ -506,7 +506,7 @@
           return `
             <div class="product-card reveal" data-delay="${delay}">
               <a href="${itemUrl}" style="width:100%">
-                <div class="img"><img src="${itemImg}" alt="${p.title}" loading="lazy"><a class="btn-yellow-gradient" href="#" style="text-decoration:none; margin-top:0.75rem; font-size:0.85rem; padding:0.4rem 1.2rem; display:inline-block;">Begin My Journey</a></div>
+                <div class="img"><img src="${itemImg}" alt="${p.title}" loading="lazy" decoding="async"><a class="btn-yellow-gradient" href="#" style="text-decoration:none; margin-top:0.75rem; font-size:0.85rem; padding:0.4rem 1.2rem; display:inline-block;">Begin My Journey</a></div>
                 <h3>${p.title}</h3>
               </a>
               <p class="price">INR ${itemPrice}</p>

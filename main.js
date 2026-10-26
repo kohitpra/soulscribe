@@ -43,6 +43,32 @@ function initResponsiveHeroVideo() {
   reducedMotion.addEventListener("change", updateVideo);
 }
 
+// Background videos: only fetch once they are about to scroll into view
+function initLazyVideo() {
+  const videos = document.querySelectorAll("[data-lazy-video]");
+  if (!videos.length) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (reducedMotion.matches) return;
+
+  const load = (video) => {
+    if (video.hasAttribute("src") || !video.dataset.src) return;
+    video.src = video.dataset.src;
+    const play = video.play();
+    if (play) play.catch(() => {});
+  };
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      load(e.target);
+      io.unobserve(e.target);
+    });
+  }, { rootMargin: "200px" });
+
+  videos.forEach((v) => io.observe(v));
+}
+
 // Reveal on scroll
 function initReveal() {
   const els = document.querySelectorAll(".reveal");
@@ -168,6 +194,7 @@ function initAccountButtons() {
 document.addEventListener("DOMContentLoaded", () => {
   initDrawer();
   initResponsiveHeroVideo();
+  initLazyVideo();
   initAccountButtons();
   initReveal();
   initHeroNames();
